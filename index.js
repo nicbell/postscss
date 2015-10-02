@@ -8,6 +8,7 @@ var postcss = require('postcss');
  */
 function PostScss(plugins) {
 	this.plugins = plugins;
+	return this;
 }
 
 /**
