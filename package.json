@@ -1,0 +1,27 @@
+{
+  "name": "postscss",
+  "version": "1.0.0",
+  "description": "node-sass + postcss = postscss",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://nicbell@github.com/nicbell/postscss.git"
+  },
+  "keywords": [
+    "node-sass",
+    "postcss"
+  ],
+  "author": "Nic Bell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicbell/postscss/issues"
+  },
+  "homepage": "https://github.com/nicbell/postscss#readme",
+  "dependencies": {
+    "node-sass": "^3.3.3",
+    "postcss": "^5.0.8"
+  }
+}
