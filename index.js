@@ -6,15 +6,14 @@ var postcss = require('postcss');
 /**
  * @constructor
  */
-function PostScss(plugins) {
+function Processor(plugins) {
 	this.plugins = plugins;
-	return this;
 }
 
 /**
  * Process single
  */
-PostScss.prototype.process = function (options) {
+Processor.prototype.process = function (options) {
 	var fromName = path.basename(options.from),
 		toName = path.basename(options.to);
 
@@ -48,10 +47,12 @@ PostScss.prototype.process = function (options) {
 /**
  * Process many
  */
-PostScss.prototype.processMany = function (optionsArray) { 
+Processor.prototype.processMany = function (optionsArray) {
 	for (var i = 0; i < optionsArray.length; i++) {
 		this.process(optionsArray[i]);
 	}
 }
 
-module.exports = PostScss;
+module.exports = function (plugins) {
+	return new Processor(plugins);
+};
