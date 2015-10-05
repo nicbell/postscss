@@ -5,10 +5,20 @@ node-sass +  PostCss = PostScss
 ```js
 var postscss = require('postscss');
 
+// Single build
 postscss([postcss plugins]).process({
 	from: 'xxx/src/scss/xxx.scss',
 	to: 'xxx/dist/css/xxx.css'
 });
+
+// Multiple builds
+postscss([postcss plugins]).processMany([{
+	from: 'xxx/src/scss/xxx.scss',
+	to: 'xxx/dist/css/xxx.css'
+}, {
+	from: 'xxx/src/scss/xxx2.scss',
+	to: 'xxx/dist/css/xxx2.css'
+}]);
 ```
 ## PostCss plugins example
 ```js
