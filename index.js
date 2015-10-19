@@ -1,4 +1,4 @@
-var fs = require('fs');
+var nodefs = require('node-fs');
 var path = require('path');
 var sass = require('node-sass');
 var postcss = require('postcss');
@@ -35,18 +35,15 @@ Processor.prototype.process = function (options) {
 				to: toName,
 				map: { inline: false }
 			}).then(function (result) {
+
 				var dirName = path.dirname(options.to);
-				var dirStats = fs.lstatSync(dirName);
 
-				if (!dirStats.isDirectory()) {
-					console.log('Creating output directory.');
-					fs.mkdirSync(dirName);
-				}
+				nodefs.mkdirSync(dirName, '0777', true);
+				nodefs.writeFile(options.to, result.css);
+				nodefs.writeFile(options.to + '.map', result.map);
 
-				fs.writeFile(options.to, result.css);
-				fs.writeFile(options.to + '.map', result.map);
 				console.log('PostCSS transforms run.');
-			});
+			}.bind(this));
 		}
 		else {
 			console.log(err);
@@ -61,7 +58,8 @@ Processor.prototype.processMany = function (optionsArray) {
 	for (var i = 0; i < optionsArray.length; i++) {
 		this.process(optionsArray[i]);
 	}
-}
+};
+
 
 module.exports = function (plugins) {
 	return new Processor(plugins);
