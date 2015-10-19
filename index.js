@@ -17,6 +17,8 @@ Processor.prototype.process = function (options) {
 	var fromName = path.basename(options.from),
 		toName = path.basename(options.to);
 
+	console.log(fromName + ' => ' + toName);
+
 	sass.render({
 		file: options.from,
 		to: options.to,
@@ -24,7 +26,7 @@ Processor.prototype.process = function (options) {
 		precision: 10,
 		sourceMap: true
 	}, function (err, result) {
-		console.log(fromName + ' => ');
+		console.log('SASS compiled.');
 
 		if (!err) {
 			//Post css
@@ -33,9 +35,17 @@ Processor.prototype.process = function (options) {
 				to: toName,
 				map: { inline: false }
 			}).then(function (result) {
+				var dirName = path.dirname(options.to);
+				var dirStats = fs.lstatSync(dirName);
+
+				if (!dirStats.isDirectory()) {
+					console.log('Creating output directory.');
+					fs.mkdirSync(dirName);
+				}
+
 				fs.writeFile(options.to, result.css);
 				fs.writeFile(options.to + '.map', result.map);
-				console.log(toName);
+				console.log('PostCSS transforms run.');
 			});
 		}
 		else {
