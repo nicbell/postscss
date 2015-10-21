@@ -25,12 +25,11 @@ Processor.prototype.process = function (options) {
 
 		sass.render({
 			file: options.from,
-			to: options.to,
-			outputStyle: 'compressed',
+			outFile: options.to,
 			precision: 10,
-			sourceMap: true
+			sourceMap: true,
+			sourceMapEmbed: true
 		}, function (err, result) {
-
 			if (err) {
 				reject(err);
 			}
@@ -41,7 +40,7 @@ Processor.prototype.process = function (options) {
 	});
 
 	var doPostCss = function (result) {
-		console.log('Running PostCss: ' + toName);
+		console.log('Running PostCss transforms: ' + toName);
 
 		//Post css already implements promises.
 		return postcss(plugins).process(result.css, {
@@ -58,7 +57,7 @@ Processor.prototype.process = function (options) {
 		nodefs.writeFile(options.to, result.css);
 		nodefs.writeFile(options.to + '.map', result.map);
 	};
-	
+
 
 	return sassPromise
 		.then(doPostCss)
