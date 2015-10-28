@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/nicbell/postscss#readme",
   "dependencies": {
+    "chalk": "^1.1.1",
     "node-fs": "^0.1.7",
     "node-sass": "^3.4.1",
     "postcss": "^5.0.10"

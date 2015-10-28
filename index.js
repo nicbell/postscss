@@ -3,6 +3,7 @@ var nodefs = require('node-fs');
 var path = require('path');
 var sass = require('node-sass');
 var postcss = require('postcss');
+var chalk = require('chalk');
 
 /**
  * @constructor
@@ -20,9 +21,8 @@ Processor.prototype.process = function (options) {
 	var toName = path.basename(options.to);
 	var dirName = path.dirname(options.to);
 
+	// Wrap node-sass in a promise
 	var sassPromise = new Promise(function (resolve, reject) {
-		console.log('Compiling SASS: ' + options.from);
-
 		sass.render({
 			file: options.from,
 			outFile: options.to,
@@ -39,10 +39,8 @@ Processor.prototype.process = function (options) {
 		});
 	});
 
+	// PostCss already implements promises, so we just return it.
 	var doPostCss = function (result) {
-		console.log('Running PostCss transforms: ' + toName);
-
-		//Post css already implements promises.
 		return postcss(plugins).process(result.css, {
 			from: toName,
 			to: toName,
@@ -51,11 +49,11 @@ Processor.prototype.process = function (options) {
 	};
 
 	var writeToDisk = function (result) {
-		console.log('Writing file: ' + options.to);
-
 		nodefs.mkdirSync(dirName, '0777', true);
 		nodefs.writeFile(options.to, result.css);
 		nodefs.writeFile(options.to + '.map', result.map);
+
+		console.log(chalk.green('>>'), chalk.cyan(options.to), 'created.');
 	};
 
 
@@ -69,11 +67,7 @@ Processor.prototype.process = function (options) {
  * Process many
  */
 Processor.prototype.processMany = function (optionsArray) {
-	var proms = []
-
-	for (var i = 0; i < optionsArray.length; i++) {
-		proms.push(this.process(optionsArray[i]));
-	}
+	var proms = optionsArray.map((item) => this.process(item));
 
 	return Promise.all(proms);
 };
