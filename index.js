@@ -50,8 +50,8 @@ Processor.prototype.process = function (options) {
 
 	var writeToDisk = function (result) {
 		nodefs.mkdirSync(dirName, '0777', true);
-		nodefs.writeFile(options.to, result.css);
-		nodefs.writeFile(options.to + '.map', result.map);
+		nodefs.writeFileSync(options.to, result.css);
+		nodefs.writeFileSync(options.to + '.map', result.map);
 
 		console.log(chalk.green('>>'), chalk.cyan(options.to), 'created.');
 	};
