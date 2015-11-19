@@ -24,14 +24,20 @@ postscss([postcss plugins]).processMany([{
 	from: 'xxx/src/scss/xxx2.scss',
 	to: 'xxx/dist/css/xxx2.css'
 }]);
+```
+## Promises
+```js
+var postscss = require('postscss');
 
-// Promises
 postscss([postcss plugins]).process({
 	from: 'xxx/src/scss/xxx.scss',
 	to: 'xxx/dist/css/xxx.css'
 })
 .then(function() {
 	console.log('All done.');
+})
+.catch(function(error) {
+	// Error handling.
 });
 ```
 ## PostCss plugins example
@@ -49,9 +55,9 @@ postscss([autoprefixer(['> 5%', 'last 2 versions', 'ie > 7']), cssnano()]).proce
 ```js
 grunt.registerTask('compileSCSS', 'Task description.', function () {
 	var done = this.async();
-	
+
 	var postscss = require('postscss');
-	
+
 	postscss([postcss plugins]).process({
 		from: 'xxx/src/scss/xxx.scss',
 		to: 'xxx/dist/css/xxx.css'
