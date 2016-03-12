@@ -1,4 +1,4 @@
-/* global Promise */
+ /* global Promise */
 var nodefs = require('node-fs');
 var path = require('path');
 var sass = require('node-sass');
@@ -28,7 +28,8 @@ Processor.prototype.process = function (options) {
 			outFile: options.to,
 			precision: 10,
 			sourceMap: true,
-			sourceMapEmbed: true
+			sourceMapEmbed: true,
+			importer: require('npm-sass').importer,
 		}, function (err, result) {
 			if (err) {
 				reject(err);
