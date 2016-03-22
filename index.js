@@ -29,7 +29,7 @@ Processor.prototype.process = function (options) {
 			precision: 10,
 			sourceMap: true,
 			sourceMapEmbed: true,
-			importer: require('npm-sass').importer,
+			importer: options.importer || null,
 		}, function (err, result) {
 			if (err) {
 				reject(err);

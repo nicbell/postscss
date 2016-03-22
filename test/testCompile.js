@@ -1,14 +1,15 @@
 // Requires.
 var postscss = require('../index');
 var cssnano = require('cssnano');
+var npmsass = require('npm-sass');
 
 // Compile sass.
 function compile() {
-	var nano = cssnano();
 
-	postscss([nano]).process({
+	postscss([cssnano()]).process({
 		from: 'test/src/test.scss',
-		to: 'test/dist/test.css'
+		to: 'test/dist/test.css',
+		importer: npmsass.importer
 	})
 	.catch(function(error) {
 		console.error('\n' + error + '\n');

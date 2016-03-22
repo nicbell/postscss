@@ -65,3 +65,14 @@ grunt.registerTask('compileSCSS', 'Task description.', function () {
 	.then(done);
 });
 ```
+## SASS importer
+```js
+var postscss = require('postscss');
+var npmsass = require('npm-sass');
+
+postscss([postcss plugins]).process({
+	from: 'xxx/src/scss/xxx.scss',
+	to: 'xxx/dist/css/xxx.css',
+	importer: npmsass.importer
+});
+```

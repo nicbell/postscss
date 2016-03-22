@@ -4,7 +4,7 @@
   "description": "node-sass + postcss = postscss",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm i cssnano suitcss-base",
+    "pretest": "npm i cssnano suitcss-base npm-sass",
     "test": "node ./test/testCompile.js -c"
   },
   "repository": {
@@ -27,7 +27,6 @@
     "chalk": "^1.1.1",
     "node-fs": "^0.1.7",
     "node-sass": "^3.4.2",
-    "npm-sass": "^1.1.0",
     "postcss": "^5.0.19"
   }
 }
