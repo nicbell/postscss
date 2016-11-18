@@ -1,6 +1,6 @@
 {
   "name": "postscss",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "node-sass + postcss = postscss",
   "main": "index.js",
   "scripts": {
