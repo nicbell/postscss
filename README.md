@@ -16,6 +16,13 @@ postscss([postcss plugins]).process({
 	to: 'xxx/dist/css/xxx.css'
 });
 
+// Disabling source maps
+postscss([postcss plugins]).process({
+	from: 'xxx/src/scss/xxx.scss',
+	to: 'xxx/dist/css/xxx.css',
+	sourceMapDisabled: true
+});
+
 // Multiple builds
 postscss([postcss plugins]).processMany([{
 	from: 'xxx/src/scss/xxx.scss',
