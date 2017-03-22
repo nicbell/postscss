@@ -1,9 +1,11 @@
- /* global Promise */
+/* global Promise */
 var nodefs = require('node-fs');
 var path = require('path');
 var sass = require('node-sass');
 var postcss = require('postcss');
+var eyeglass = require('eyeglass');
 var chalk = require('chalk');
+
 
 /**
  * @constructor
@@ -17,20 +19,17 @@ function Processor(plugins) {
  * Process single
  */
 Processor.prototype.process = function (options) {
-	var plugins = this.plugins;
-	var toName = path.basename(options.to);
-	var dirName = path.dirname(options.to);
 
-	// Wrap node-sass in a promise
+	// Wrap node-sass in a promise.
 	var sassPromise = new Promise(function (resolve, reject) {
-		sass.render({
+		sass.render(eyeglass({
 			file: options.from,
 			outFile: options.to,
 			precision: 10,
 			sourceMap: true,
 			sourceMapEmbed: true,
-			importer: options.importer || null,
-		}, function (err, result) {
+			importer: options.importer || null
+		}), function (err, result) {
 			if (err) {
 				reject(err);
 			}
@@ -41,22 +40,27 @@ Processor.prototype.process = function (options) {
 	});
 
 	// PostCss already implements promises, so we just return it.
-	var doPostCss = function (result) {
-		return postcss(plugins).process(result.css, {
+	var doPostCss = (result) => {
+		var toName = path.basename(options.to);
+
+		return postcss(this.plugins).process(result.css, {
 			from: toName,
 			to: toName,
 			map: { inline: false }
 		});
 	};
 
-	var writeToDisk = function (result) {
-		nodefs.mkdirSync(dirName, '0777', true);
+	// Write results to disk.
+	var writeToDisk = (result) => {
+		nodefs.mkdirSync(path.dirname(options.to), '0777', true);
 		nodefs.writeFileSync(options.to, result.css);
-		nodefs.writeFileSync(options.to + '.map', result.map);
-
 		console.log(chalk.green('>>'), chalk.cyan(options.to), 'created.');
-	};
 
+		if (!options.sourceMapDisabled) {
+			nodefs.writeFileSync(options.to + '.map', result.map);
+			console.log(chalk.green('>>'), chalk.cyan(options.to + '.map'), 'created.');
+		}
+	};
 
 	return sassPromise
 		.then(doPostCss)

@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../node_modules/suitcss-base/lib/base.css","test.css","../src/test.scss"],"names":[],"mappings":"AAWA,KACE,qBAAuB,CACxB,AAED,iBAGE,kBAAoB,CACrB,AAMD,gDAYE,QAAU,CACX,AAED,OACE,uBAAwB,AACxB,SAAU,AACV,SAAW,CACZ,AAOD,aACE,mBAAoB,AACpB,yCAA2C,CAC5C,AAED,SACE,SAAU,AACV,SAAU,AACV,SAAW,CACZ,AAED,OACE,QAAU,CACX,AAED,MAEE,gBAAiB,AACjB,SAAU,AACV,SAAW,CACZ,ACLD,sBDcE,sBAAyB,CAC1B,AE/ED,KACC,WAAa,CACb","file":"test.css"}
+{"version":3,"sources":["../src/test.scss"],"names":[],"mappings":"AAAA,KACC,WAA2B,CAC3B","file":"test.css"}

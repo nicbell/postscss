@@ -5,11 +5,9 @@ var npmsass = require('npm-sass');
 
 // Compile sass.
 function compile() {
-
 	postscss([cssnano()]).process({
 		from: 'test/src/test.scss',
-		to: 'test/dist/test.css',
-		importer: npmsass.importer
+		to: 'test/dist/test.css'
 	})
 	.catch(function(error) {
 		console.error('\n' + error + '\n');
