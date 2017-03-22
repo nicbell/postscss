@@ -1,7 +1,7 @@
 # PostScss [![NPM](https://nodei.co/npm/postscss.png?mini=true)](https://nodei.co/npm/postscss/) [![Downloads](https://img.shields.io/npm/dt/postscss.svg)](https://www.npmjs.com/package/postscss)
 node-sass +  PostCss = PostScss.
 
-PostScss compiles SASS into CSS then runs [PostCSS](https://github.com/postcss/postcss) plugins.
+PostScss compiles SASS into CSS then runs [PostCSS](https://github.com/postcss/postcss) plugins. It also supports importing Eyeglass modules.
 
 ## Install
 `npm i postscss`
