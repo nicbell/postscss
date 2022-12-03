@@ -1,15 +1,14 @@
 // Requires.
 var postscss = require('../index');
 var cssnano = require('cssnano');
-var npmsass = require('npm-sass');
+var autoprefixer = require('autoprefixer');
 
-// Compile sass.
+// Compile SCSS to CSS, auto prefix then shrink using nano.
 function compile() {
-	postscss([cssnano()]).process({
+	postscss([autoprefixer('> 5%', 'last 2 versions', 'ie > 7'), cssnano()]).process({
 		from: 'test/src/test.scss',
 		to: 'test/dist/test.css'
-	})
-	.catch(function(error) {
+	}).catch(function (error) {
 		console.error('\n' + error + '\n');
 	});
 }

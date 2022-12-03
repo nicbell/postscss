@@ -57,7 +57,7 @@ Processor.prototype.process = function (options) {
 		console.log(chalk.green('>>'), chalk.cyan(options.to), 'created.');
 
 		if (!options.sourceMapDisabled) {
-			nodefs.writeFileSync(options.to + '.map', result.map);
+			nodefs.writeFileSync(options.to + '.map', result.map.toString());
 			console.log(chalk.green('>>'), chalk.cyan(options.to + '.map'), 'created.');
 		}
 	};
