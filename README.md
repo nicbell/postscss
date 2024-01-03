@@ -1,4 +1,5 @@
-# PostScss [![NPM](https://nodei.co/npm/postscss.png?mini=true)](https://nodei.co/npm/postscss/) [![Downloads](https://img.shields.io/npm/dt/postscss.svg)](https://www.npmjs.com/package/postscss)
+# PostScss [![NPM](https://nodei.co/npm/postscss.png?mini=true)](https://nodei.co/npm/postscss/) ![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnicbell%2Fnpm-statistics%2Fmaster%2Fpackages%2Fpostscss.json&style=flat&logo=null&label=downloads&color=%2341b91&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fpostscss)
+
 <img src="https://user-images.githubusercontent.com/151842/205453502-c92ab83c-1d6a-46fb-9d59-22eafe168047.png" width="80">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/151842/205453464-8b3dd49a-9fb0-4276-814c-8994e7d36c4f.png" width="80">
 
 node-sass +  PostCss = PostScss.
